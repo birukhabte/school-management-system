@@ -1,0 +1,93 @@
+/* Choose User Container */
+.choose-user-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/* User Cards Layout */
+.choose-user-container > div {
+  flex: 1;
+  max-width: 300px;
+  margin: 0 20px;
+  padding: 40px 30px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.choose-user-container > div:hover {
+  transform: translateY(-10px);
+}
+
+/* Headings */
+.choose-user-container h1 {
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+/* Buttons */
+.choose-user-container button {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Admin Button */
+.choose-user-container > div:nth-child(1) button {
+  background: linear-gradient(to right, #f093fb 0%, #f5576c 100%);
+  color: white;
+}
+
+.choose-user-container > div:nth-child(1) button:hover {
+  background: linear-gradient(to right, #f5576c 0%, #f093fb 100%);
+  box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+}
+
+/* Student Button */
+.choose-user-container > div:nth-child(2) button {
+  background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+  color: white;
+}
+
+.choose-user-container > div:nth-child(2) button:hover {
+  background: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);
+  box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
+}
+
+/* Teacher Button */
+.choose-user-container > div:nth-child(3) button {
+  background: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  color: white;
+}
+
+.choose-user-container > div:nth-child(3) button:hover {
+  background: linear-gradient(to right, #38f9d7 0%, #43e97b 100%);
+  box-shadow: 0 5px 15px rgba(56, 249, 215, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .choose-user-container {
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .choose-user-container > div {
+    margin: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,233 @@
+.timetable-container {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.timetable-content {
+    flex: 1;
+    margin-left: 250px;
+    padding: 30px;
+    transition: margin-left 0.3s ease;
+}
+
+.timetable-content.collapsed {
+    margin-left: 80px;
+}
+
+.timetable-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header-info h1 {
+    font-size: 2rem;
+    color: #1e293b;
+    margin: 0;
+}
+
+.header-info p {
+    color: #64748b;
+    margin: 5px 0 0 0;
+}
+
+/* Controls */
+.timetable-controls {
+    background: white;
+    padding: 20px 25px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.grade-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.grade-selector label {
+    font-weight: 600;
+    color: #64748b;
+}
+
+.grade-chips {
+    display: flex;
+    gap: 8px;
+}
+
+.grade-chip {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: transparent;
+    color: #64748b;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.grade-chip:hover {
+    background: #f1f5f9;
+}
+
+.grade-chip.active {
+    background: #2563eb;
+    color: white;
+    border-color: #2563eb;
+}
+
+.view-selector {
+    display: flex;
+    gap: 10px;
+}
+
+/* Grid Wrapper */
+.timetable-wrapper {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+}
+
+.timetable-grid {
+    display: grid;
+    grid-template-columns: 120px repeat(5, 1fr);
+    gap: 2px;
+    background: #f1f5f9;
+    border: 1px solid #f1f5f9;
+}
+
+.grid-header {
+    background: #f8fafc;
+    padding: 15px;
+    text-align: center;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+}
+
+.time-slot-label {
+    background: #f8fafc;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #94a3b8;
+}
+
+.schedule-slot {
+    background: white;
+    height: 100px;
+    padding: 8px;
+}
+
+/* Subject Boxes */
+.subject-box {
+    height: 100%;
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 0.75rem;
+    border-left: 4px solid transparent;
+}
+
+.subject-box strong {
+    display: block;
+    font-size: 0.875rem;
+    color: #1e293b;
+}
+
+.subject-box span {
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.subject-box small {
+    margin-top: 2px;
+    opacity: 0.8;
+    font-weight: 600;
+}
+
+.subject-box.science {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-left-color: #0ea5e9;
+}
+
+.subject-box.math {
+    background: #dcfce7;
+    color: #15803d;
+    border-left-color: #22c55e;
+}
+
+.subject-box.english {
+    background: #fef3c7;
+    color: #a16207;
+    border-left-color: #f59e0b;
+}
+
+/* Buttons */
+.btn {
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-secondary {
+    background: white;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+}
+
+.btn-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.btn-icon.active {
+    background: #e0f2fe;
+    color: #2563eb;
+    border-color: #3b82f6;
+}
+
+@media (max-width: 1024px) {
+    .timetable-wrapper {
+        overflow-x: auto;
+    }
+
+    .timetable-grid {
+        min-width: 800px;
+    }
+}

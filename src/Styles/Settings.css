@@ -1,0 +1,14 @@
+.settings-container {
+    display: flex;
+}
+
+.settings-content {
+    flex-grow: 1;
+    padding: 20px;
+    margin-left: 250px;
+    transition: margin-left 0.3s ease;
+}
+
+.settings-content.collapsed {
+    margin-left: 80px;
+}
