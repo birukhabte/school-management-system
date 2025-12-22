@@ -10,6 +10,7 @@ const Library = () => {
             <div className={`library-content ${collapsed ? 'collapsed' : ''}`}>
                 <h1>Library</h1>
                 <p>Manage library here.</p>
+                <h1>this for test</h1>
             </div>
         </div>
     );
