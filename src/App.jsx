@@ -17,14 +17,11 @@ import Exams from './pages/Admin/Exams.jsx';
 import Events from './pages/Admin/Events.jsx';
 import Settings from './pages/Admin/Settings.jsx';
 import Library from './pages/Admin/Library.jsx';
-import Fees from './pages/Admin/Fees.jsx';
+import Fees from './pages/Admin/Fees/Fees.jsx';
 import Reports from './pages/Admin/Reports.jsx';
 import Subjects from './pages/Admin/Subjects.jsx';
 import TimeTable from './pages/Admin/TimeTable.jsx';
 import Logout from './pages/Admin/Logout.jsx';
-
-
-
 
 
 function App() {
