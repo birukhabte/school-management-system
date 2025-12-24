@@ -86,22 +86,7 @@ const FeesManagement = () => {
         { id: 1, amount: 10000, date: '2024-03-10', mode: 'cash', receipt: 'RCPT002' }
       ]
     },
-    {
-      id: 3,
-      studentId: 'ST003',
-      name: 'Michael Chen',
-      grade: '11',
-      section: 'B',
-      totalFee: 13500,
-      paidAmount: 13500,
-      pendingAmount: 0,
-      status: 'paid',
-      dueDate: '2024-03-31',
-      lastPayment: '2024-03-12',
-      payments: [
-        { id: 1, amount: 13500, date: '2024-03-12', mode: 'cheque', receipt: 'RCPT003' }
-      ]
-    },
+    
     {
       id: 4,
       studentId: 'ST004',
