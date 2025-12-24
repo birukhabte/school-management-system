@@ -5,11 +5,9 @@ import Sidebar from '../Sidebar';
 import '../../../Styles/Fees.css';
 
 // Import Reusable Components
-import FeeStructureTab from './FeeStructureTab';
 import PaymentsTab from './PaymentsTab';
 import InvoicesTab from './InvoicesTab';
 import ReportsTab from './ReportsTab';
-import FeeStructureModal from './FeeStructureModal';
 import PaymentModal from './PaymentModal';
 import InvoiceModal from './InvoiceModal';
 
@@ -36,12 +34,10 @@ import {
 
 const FeesManagement = () => {
   // States
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'fee-structure', 'payments', 'invoices', 'reports'
-  const [showFeeStructureForm, setShowFeeStructureForm] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'payments', 'invoices', 'reports'
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [selectedFeeStructure, setSelectedFeeStructure] = useState(null);
 
   // Stats Data
   const [stats, setStats] = useState({
@@ -56,123 +52,6 @@ const FeesManagement = () => {
     monthlyTarget: 500000
   });
 
-  // Fee Structures
-  const [feeStructures, setFeeStructures] = useState([
-    {
-      id: 1,
-      name: 'Grade 9 - Regular',
-      grade: '9',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'regular',
-      amount: 12500,
-      components: [
-        { name: 'Tuition Fee', amount: 8000 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Lab Fee', amount: 1000 },
-        { name: 'Sports Fee', amount: 500 },
-        { name: 'Activity Fee', amount: 2500 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 120
-    },
-    {
-      id: 2,
-      name: 'Grade 10 - Science',
-      grade: '10',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'science',
-      amount: 14500,
-      components: [
-        { name: 'Tuition Fee', amount: 9000 },
-        { name: 'Science Lab Fee', amount: 2000 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Computer Fee', amount: 1000 },
-        { name: 'Activity Fee', amount: 2000 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 150
-    },
-    {
-      id: 3,
-      name: 'Grade 11 - Commerce',
-      grade: '11',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'commerce',
-      amount: 13500,
-      components: [
-        { name: 'Tuition Fee', amount: 8500 },
-        { name: 'Commerce Lab Fee', amount: 1500 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Computer Fee', amount: 1000 },
-        { name: 'Activity Fee', amount: 2000 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 130
-    },
-    {
-      id: 4,
-      name: 'Grade 12 - Science',
-      grade: '12',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'science',
-      amount: 15500,
-      components: [
-        { name: 'Tuition Fee', amount: 9500 },
-        { name: 'Science Lab Fee', amount: 2500 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Exam Fee', amount: 1500 },
-        { name: 'Activity Fee', amount: 1500 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 140
-    },
-    {
-      id: 5,
-      name: 'Transport Fee',
-      grade: 'all',
-      academicYear: '2024-2025',
-      term: 'Monthly',
-      feeType: 'transport',
-      amount: 2000,
-      components: [
-        { name: 'Bus Service', amount: 2000 }
-      ],
-      dueDate: '2024-03-25',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 400
-    },
-    {
-      id: 6,
-      name: 'Hostel Fee',
-      grade: 'all',
-      academicYear: '2024-2025',
-      term: 'Monthly',
-      feeType: 'hostel',
-      amount: 8000,
-      components: [
-        { name: 'Accommodation', amount: 5000 },
-        { name: 'Food & Dining', amount: 3000 }
-      ],
-      dueDate: '2024-03-25',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 200
-    }
-  ]);
-
   // Students with Fee Details
   const [students, setStudents] = useState([
     {
@@ -181,7 +60,6 @@ const FeesManagement = () => {
       name: 'Biruk habte',
       grade: '10',
       section: 'A',
-      feeStructure: 2,
       totalFee: 14500,
       paidAmount: 14500,
       pendingAmount: 0,
@@ -198,7 +76,6 @@ const FeesManagement = () => {
       name: 'Emma Johnson',
       grade: '10',
       section: 'A',
-      feeStructure: 2,
       totalFee: 14500,
       paidAmount: 10000,
       pendingAmount: 4500,
@@ -215,7 +92,6 @@ const FeesManagement = () => {
       name: 'Michael Chen',
       grade: '11',
       section: 'B',
-      feeStructure: 3,
       totalFee: 13500,
       paidAmount: 13500,
       pendingAmount: 0,
@@ -232,7 +108,6 @@ const FeesManagement = () => {
       name: 'Sophia Williams',
       grade: '11',
       section: 'A',
-      feeStructure: 3,
       totalFee: 13500,
       paidAmount: 0,
       pendingAmount: 13500,
@@ -247,7 +122,6 @@ const FeesManagement = () => {
       name: 'Robert Wilson',
       grade: '12',
       section: 'A',
-      feeStructure: 4,
       totalFee: 15500,
       paidAmount: 15500,
       pendingAmount: 0,
@@ -264,7 +138,6 @@ const FeesManagement = () => {
       name: 'Lisa Brown',
       grade: '9',
       section: 'B',
-      feeStructure: 1,
       totalFee: 12500,
       paidAmount: 12500,
       pendingAmount: 0,
@@ -281,7 +154,6 @@ const FeesManagement = () => {
       name: 'David Miller',
       grade: '12',
       section: 'B',
-      feeStructure: 4,
       totalFee: 15500,
       paidAmount: 8000,
       pendingAmount: 7500,
@@ -298,7 +170,6 @@ const FeesManagement = () => {
       name: 'Sarah Davis',
       grade: '9',
       section: 'A',
-      feeStructure: 1,
       totalFee: 12500,
       paidAmount: 0,
       pendingAmount: 12500,
@@ -522,10 +393,7 @@ const FeesManagement = () => {
     calculateStats();
   }, [payments, students]);
 
-  // Handle Fee Structure Form Submit
-  const onFeeStructureSuccess = (newFeeStructure) => {
-    setFeeStructures([...feeStructures, { ...newFeeStructure, id: feeStructures.length + 1 }]);
-  };
+
 
   // Handle Payment Form Submit
   const onPaymentSuccess = (newPayment) => {
@@ -679,13 +547,7 @@ const FeesManagement = () => {
               <BarChart3 size={18} />
               <span>Overview</span>
             </button>
-            <button
-              className={`tab ${activeTab === 'fee-structure' ? 'active' : ''}`}
-              onClick={() => setActiveTab('fee-structure')}
-            >
-              <FileText size={18} />
-              <span>Fee Structure</span>
-            </button>
+
             <button
               className={`tab ${activeTab === 'payments' ? 'active' : ''}`}
               onClick={() => setActiveTab('payments')}
@@ -709,15 +571,6 @@ const FeesManagement = () => {
             </button>
           </div>
           <div className="tab-actions">
-            {activeTab === 'fee-structure' && (
-              <button
-                className="btn btn-primary"
-                onClick={() => setShowFeeStructureForm(true)}
-              >
-                <Plus size={18} />
-                <span>Create Fee Structure</span>
-              </button>
-            )}
             <button className="btn btn-secondary">
               <Filter size={18} />
               <span>Filter</span>
@@ -922,14 +775,6 @@ const FeesManagement = () => {
           </div>
         )}
 
-        {/* Fee Structure Tab */}
-        {activeTab === 'fee-structure' && (
-          <FeeStructureTab
-            feeStructures={feeStructures}
-            setSelectedFeeStructure={setSelectedFeeStructure}
-          />
-        )}
-
         {/* Payments Tab */}
         {activeTab === 'payments' && (
           <PaymentsTab
@@ -955,12 +800,7 @@ const FeesManagement = () => {
           />
         )}
 
-        {/* Fee Structure Form Modal */}
-        <FeeStructureModal
-          show={showFeeStructureForm}
-          onClose={() => setShowFeeStructureForm(false)}
-          onSuccess={onFeeStructureSuccess}
-        />
+
 
         {/* Payment Form Modal */}
         <PaymentModal
@@ -976,7 +816,6 @@ const FeesManagement = () => {
           show={showInvoiceModal}
           onClose={() => setShowInvoiceModal(false)}
           selectedStudent={selectedStudent}
-          feeStructures={feeStructures}
         />
       </div>
     </div>
