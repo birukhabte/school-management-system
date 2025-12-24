@@ -280,20 +280,6 @@ const FeesManagement = () => {
       feeType: 'Transport Fee',
       academicYear: '2024-2025'
     },
-    {
-      id: 8,
-      receiptNo: 'RCPT008',
-      studentId: 'ST010',
-      studentName: 'Maria Garcia',
-      grade: '10',
-      amount: 8000,
-      date: '2024-03-19',
-      mode: 'online',
-      status: 'pending',
-      collectedBy: 'System',
-      feeType: 'Hostel Fee',
-      academicYear: '2024-2025'
-    }
   ]);
 
   // Financial Reports
@@ -322,10 +308,8 @@ const FeesManagement = () => {
       totalPending: 250000,
       collectionRate: 83.3,
       feeTypeBreakdown: [
-        { type: 'Tuition', amount: 800000 },
         { type: 'Lab', amount: 200000 },
-        { type: 'Transport', amount: 150000 },
-        { type: 'Hostel', amount: 100000 }
+        { type: 'Transport', amount: 150000 }
       ],
       generatedAt: '2024-03-15 10:00',
       generatedBy: 'Admin'
