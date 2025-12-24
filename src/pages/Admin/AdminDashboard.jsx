@@ -186,7 +186,7 @@ const AdminDashboard = () => {
     },
     {
       id: 2,
-      action: `Fee Payment Received (${formatCurrency(12000, '$')})`,
+      action: `Fee Payment Received (${formatCurrency(12000)})`,
       user: 'Epherem Ayalew',
       time: '25 minutes ago',
       icon: '💰',
@@ -194,7 +194,7 @@ const AdminDashboard = () => {
     },
     {
       id: 3,
-      action: `Bulk Grant Received (${formatCurrency(2500000, '$')})`,
+      action: `Bulk Grant Received (${formatCurrency(2500000)})`,
       user: 'Ministry of Education',
       time: '1 hour ago',
       icon: '🏦',

@@ -86,7 +86,22 @@ const FeesManagement = () => {
         { id: 1, amount: 10000, date: '2024-03-10', mode: 'cash', receipt: 'RCPT002' }
       ]
     },
-    
+    {
+      id: 3,
+      studentId: 'ST003',
+      name: 'Michael Chen',
+      grade: '11',
+      section: 'B',
+      totalFee: 13500,
+      paidAmount: 13500,
+      pendingAmount: 0,
+      status: 'paid',
+      dueDate: '2024-03-31',
+      lastPayment: '2024-03-12',
+      payments: [
+        { id: 1, amount: 13500, date: '2024-03-12', mode: 'cheque', receipt: 'RCPT003' }
+      ]
+    },
     {
       id: 4,
       studentId: 'ST004',
@@ -171,7 +186,7 @@ const FeesManagement = () => {
       id: 1,
       receiptNo: 'RCPT001',
       studentId: 'ST001',
-      studentName: 'John Smith',
+      studentName: 'Biruk habte',
       grade: '10',
       amount: 14500,
       date: '2024-03-15',
@@ -195,7 +210,20 @@ const FeesManagement = () => {
       feeType: 'Quarterly Fee',
       academicYear: '2024-2025'
     },
-    
+    {
+      id: 3,
+      receiptNo: 'RCPT003',
+      studentId: 'ST003',
+      studentName: 'Michael Chen',
+      grade: '11',
+      amount: 13500,
+      date: '2024-03-12',
+      mode: 'cheque',
+      status: 'completed',
+      collectedBy: 'Admin',
+      feeType: 'Quarterly Fee',
+      academicYear: '2024-2025'
+    },
     {
       id: 4,
       receiptNo: 'RCPT004',
@@ -347,7 +375,7 @@ const FeesManagement = () => {
 
       const studentsPaid = students.filter(s => s.status === 'paid').length;
       const studentsPending = students.filter(s => s.status === 'pending' || s.status === 'partial' || s.status === 'overdue').length;
-      const collectionRate = ((studentsPaid / students.length) * 100).toFixed(1);
+      const collectionRate = students.length > 0 ? ((studentsPaid / students.length) * 100).toFixed(1) : "0.0";
 
       setStats({
         totalCollected,
@@ -369,7 +397,8 @@ const FeesManagement = () => {
 
   // Handle Payment Form Submit
   const onPaymentSuccess = (newPayment) => {
-    setPayments([...payments, { ...newPayment, id: payments.length + 1, receiptNo: `RCPT${String(payments.length + 1).padStart(3, '0')}` }]);
+    const nextId = payments.length > 0 ? Math.max(...payments.map(p => p.id)) + 1 : 1;
+    setPayments([...payments, { ...newPayment, id: nextId, receiptNo: `RCPT${String(nextId).padStart(3, '0')}` }]);
   };
 
   // Generate invoice
@@ -616,7 +645,7 @@ const FeesManagement = () => {
                         <div
                           className="bar-fill"
                           style={{ height: `${(amount / 500) * 100}%` }}
-                          title={`₹${amount}K`}
+                          title={`ETB ${amount}K`}
                         ></div>
                         <span className="bar-label">{['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'][index]}</span>
                       </div>
