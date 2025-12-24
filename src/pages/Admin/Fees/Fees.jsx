@@ -195,20 +195,7 @@ const FeesManagement = () => {
       feeType: 'Quarterly Fee',
       academicYear: '2024-2025'
     },
-    {
-      id: 3,
-      receiptNo: 'RCPT003',
-      studentId: 'ST003',
-      studentName: 'Michael Chen',
-      grade: '11',
-      amount: 13500,
-      date: '2024-03-12',
-      mode: 'cheque',
-      status: 'completed',
-      collectedBy: 'Admin',
-      feeType: 'Quarterly Fee',
-      academicYear: '2024-2025'
-    },
+    
     {
       id: 4,
       receiptNo: 'RCPT004',
