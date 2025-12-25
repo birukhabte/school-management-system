@@ -34,7 +34,7 @@ import {
 
 const FeesManagement = () => {
   // States
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'payments', 'invoices', 'reports'
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview', Controls which tab is currently visible.
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
@@ -189,12 +189,12 @@ const FeesManagement = () => {
       studentName: 'Biruk habte',
       grade: '10',
       amount: 14500,
-      date: '2024-03-15',
+      date: '2025-03-15',
       mode: 'online',
       status: 'completed',
       collectedBy: 'Admin',
       feeType: 'Quarterly Fee',
-      academicYear: '2024-2025'
+      academicYear: '2025-2026'
     },
     {
       id: 2,
@@ -297,7 +297,7 @@ const FeesManagement = () => {
         { grade: '11', collected: 110000, pending: 50000 },
         { grade: '12', collected: 130000, pending: 125000 }
       ],
-      generatedAt: '2024-03-20 14:30',
+      generatedAt: '2025-03-20 14:30',
       generatedBy: 'Admin'
     },
     {
@@ -347,9 +347,10 @@ const FeesManagement = () => {
         .reduce((sum, payment) => sum + payment.amount, 0);
 
       const totalPending = students.reduce((sum, student) => sum + student.pendingAmount, 0);
+      {/*👉 It adds up all pending fees of all students and stores the result in totalPending.*/ }
 
       const thisMonth = payments
-        .filter(p => p.status === 'completed' && p.date.startsWith('2024-03'))
+        .filter(p => p.status === 'completed' && p.date.startsWith('2025-03'))
         .reduce((sum, payment) => sum + payment.amount, 0);
 
       const lastMonth = 380000; // Hardcoded for demo
@@ -379,10 +380,13 @@ const FeesManagement = () => {
 
 
 
-  // Handle Payment Form Submit
+  {/*When a new payment is successfully recorded:
+It generates a unique ID for the payment.
+It generates a receipt number based on the ID.
+It adds the payment to the payments state so the UI updates automatically. */}
   const onPaymentSuccess = (newPayment) => {
     const nextId = payments.length > 0 ? Math.max(...payments.map(p => p.id)) + 1 : 1;
-    setPayments([...payments, { ...newPayment, id: nextId, receiptNo: `RCPT${String(nextId).padStart(3, '0')}` }]);
+    setPayments([...payments,  { ...newPayment, id: nextId, receiptNo: `RCPT${String(nextId).padStart(3, '0')}` }]);
   };
 
   // Generate invoice
@@ -402,6 +406,9 @@ const FeesManagement = () => {
   };
 
   // Filter students
+  {/*It filters the students array based on the selected filters for grade and status.
+Only students who match the selected grade AND status are included.
+Result is stored in filteredStudents. */}
   const filteredStudents = students.filter(student => {
     const matchesGrade = filters.grade === 'all' || student.grade === filters.grade;
     const matchesStatus = filters.status === 'all' || student.status === filters.status;

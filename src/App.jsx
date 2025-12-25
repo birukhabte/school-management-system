@@ -6,6 +6,8 @@ import AdminSignin from './Components/AdminSignin.jsx';
 import StudentSignin from './Components/StudentSignin.jsx';
 import TeacherSignin from './Components/TeacherSignin.jsx';
 import AdminDashboard from './pages/Admin/AdminDashboard.jsx';
+
+import StudentDashboard from './pages/Students/StudentDashboard.jsx';
 import Sidebar from './pages/Admin/Sidebar.jsx';
 import Classes from './pages/Admin/Classes.jsx';
 import Student from './pages/Admin/Student.jsx';
@@ -38,6 +40,7 @@ function App() {
 
         {/*All Dashboard Routes*/}
         <Route path='admin/dashboard' element={<AdminDashboard />} />
+        <Route path='student/dashboard' element={<StudentDashboard />} />
 
         { /*Admin section Here*/}
 
