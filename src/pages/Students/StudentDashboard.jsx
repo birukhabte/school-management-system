@@ -23,7 +23,14 @@ const StudentDashboard = () => {
                     <li>11:00 - Chemistry</li>
                 </ul>
             </div>
-
+ {/* Attendance */}
+            <div className="card attendance-card">
+                <h3>Attendance</h3>
+                <p className="percentage">85%</p>
+                <div className="progress-bar">
+                    <div className="progress" style={{ width: "85%" }}></div>
+                </div>
+            </div>
         </div>
           
     );
