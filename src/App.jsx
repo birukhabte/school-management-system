@@ -6,8 +6,8 @@ import AdminSignin from './Components/AdminSignin.jsx';
 import StudentSignin from './Components/StudentSignin.jsx';
 import TeacherSignin from './Components/TeacherSignin.jsx';
 import AdminDashboard from './pages/Admin/AdminDashboard.jsx';
+
 import StudentDashboard from './pages/Students/StudentDashboard.jsx';
-import Sidebar from './pages/Admin/Sidebar.jsx';
 import Classes from './pages/Admin/Classes.jsx';
 import Student from './pages/Admin/Student.jsx';
 import Teacher from './pages/Admin/Teacher.jsx';
@@ -23,6 +23,13 @@ import Reports from './pages/Admin/Reports.jsx';
 import Subjects from './pages/Admin/Subjects.jsx';
 import TimeTable from './pages/Admin/TimeTable.jsx';
 import Logout from './pages/Admin/Logout.jsx';
+import Sidebar from './pages/Students/Sidebar.jsx';
+import StudentClasses from './pages/Students/Classes.jsx';
+import StudentAttendance from './pages/Students/Attendance.jsx';
+import StudentAssignments from './pages/Students/Assignment.jsx';
+import StudentExams from './pages/Students/Exams.jsx';
+import StudentTimetable from './pages/Students/Timetable.jsx';
+import StudentSettings from './pages/Students/Settings.jsx';
 
 
 
@@ -61,7 +68,12 @@ function App() {
         <Route path="/admin/logout" element={<Logout />} />
 
         { /*Student section Here*/}
-        <Route path='/student/classes' element={<Classes />} />
+        <Route path='/student/classes' element={<StudentClasses />} />
+        <Route path='/student/attendance' element={<StudentAttendance />} />
+        <Route path='/student/assignments' element={<StudentAssignments />} />
+        <Route path='/student/exams' element={<StudentExams />} />
+        <Route path='/student/timetable' element={<StudentTimetable />} />
+        <Route path='/student/settings' element={<StudentSettings />} />
 
       </Routes>
     </Router>

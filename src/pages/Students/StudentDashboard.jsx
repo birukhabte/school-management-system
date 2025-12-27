@@ -1,10 +1,10 @@
 import '../../Styles/StudentStyle/StudentDashboard.css';
-import Sidebar from '../Admin/Sidebar';
+import Sidebar from './Sidebar';
 
 const StudentDashboard = () => {
     return (
         <div className="student-dashboard">
-
+            <Sidebar />
 
             {/* Profile Summary */}
             <div className="card profile-card">
@@ -13,7 +13,7 @@ const StudentDashboard = () => {
                 <p><strong>Class:</strong> Grade 10</p>
                 <p><strong>Section:</strong> A</p>
             </div>
-  {/* Today's Timetable */}
+            {/* Today's Timetable */}
             <div className="card timetable-card">
                 <h3>Today’s Timetable</h3>
                 <ul>
@@ -23,7 +23,7 @@ const StudentDashboard = () => {
                     <li>11:00 - Chemistry</li>
                 </ul>
             </div>
- {/* Attendance */}
+            {/* Attendance */}
             <div className="card attendance-card">
                 <h3>Attendance</h3>
                 <p className="percentage">85%</p>
@@ -31,7 +31,7 @@ const StudentDashboard = () => {
                     <div className="progress" style={{ width: "85%" }}></div>
                 </div>
             </div>
-              {/* Upcoming Exams & Assignments */}
+            {/* Upcoming Exams & Assignments */}
             <div className="card upcoming-card">
                 <h3>Upcoming Exams & Assignments</h3>
                 <ul>
@@ -48,7 +48,7 @@ const StudentDashboard = () => {
                 </ul>
             </div>
         </div>
-          
+
     );
 };
 
