@@ -39,6 +39,14 @@ const StudentDashboard = () => {
                     <li>Science Assignment – 22 Aug</li>
                 </ul>
             </div>
+            {/* Announcements */}
+            <div className="card announcement-card">
+                <h3>Latest Announcements</h3>
+                <ul>
+                    <li>📢 School closed on Friday</li>
+                    <li>📢 Midterm exams start next week</li>
+                </ul>
+            </div>
         </div>
           
     );
