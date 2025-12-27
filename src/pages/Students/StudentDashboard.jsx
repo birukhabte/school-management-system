@@ -31,6 +31,14 @@ const StudentDashboard = () => {
                     <div className="progress" style={{ width: "85%" }}></div>
                 </div>
             </div>
+              {/* Upcoming Exams & Assignments */}
+            <div className="card upcoming-card">
+                <h3>Upcoming Exams & Assignments</h3>
+                <ul>
+                    <li>Math Exam – 20 Aug</li>
+                    <li>Science Assignment – 22 Aug</li>
+                </ul>
+            </div>
         </div>
           
     );
