@@ -6,7 +6,6 @@ import AdminSignin from './Components/AdminSignin.jsx';
 import StudentSignin from './Components/StudentSignin.jsx';
 import TeacherSignin from './Components/TeacherSignin.jsx';
 import AdminDashboard from './pages/Admin/AdminDashboard.jsx';
-
 import StudentDashboard from './pages/Students/StudentDashboard.jsx';
 import Sidebar from './pages/Admin/Sidebar.jsx';
 import Classes from './pages/Admin/Classes.jsx';
@@ -24,6 +23,7 @@ import Reports from './pages/Admin/Reports.jsx';
 import Subjects from './pages/Admin/Subjects.jsx';
 import TimeTable from './pages/Admin/TimeTable.jsx';
 import Logout from './pages/Admin/Logout.jsx';
+
 
 
 function App() {
@@ -59,6 +59,9 @@ function App() {
         <Route path="/admin/subjects" element={<Subjects />} />
         <Route path="/admin/timetable" element={<TimeTable />} />
         <Route path="/admin/logout" element={<Logout />} />
+
+        { /*Student section Here*/}
+        <Route path='/student/classes' element={<Classes />} />
 
       </Routes>
     </Router>
