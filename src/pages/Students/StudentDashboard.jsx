@@ -13,9 +13,19 @@ const StudentDashboard = () => {
                 <p><strong>Class:</strong> Grade 10</p>
                 <p><strong>Section:</strong> A</p>
             </div>
-
+  {/* Today's Timetable */}
+            <div className="card timetable-card">
+                <h3>Today’s Timetable</h3>
+                <ul>
+                    <li>08:00 - Math</li>
+                    <li>09:00 - English</li>
+                    <li>10:00 - Physics</li>
+                    <li>11:00 - Chemistry</li>
+                </ul>
+            </div>
 
         </div>
+          
     );
 };
 
