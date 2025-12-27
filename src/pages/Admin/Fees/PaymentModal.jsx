@@ -140,7 +140,6 @@ const PaymentModal = ({
                                 <option value="quarterly">Quarterly Fee</option>
                                 <option value="monthly">Monthly Fee</option>
                                 <option value="transport">Transport Fee</option>
-                                <option value="hostel">Hostel Fee</option>
                                 <option value="exam">Exam Fee</option>
                                 <option value="other">Other</option>
                             </select>

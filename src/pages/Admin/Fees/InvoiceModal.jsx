@@ -5,8 +5,7 @@ import { formatCurrency } from '../../../utils/formatters';
 const InvoiceModal = ({
     show,
     onClose,
-    selectedStudent,
-    feeStructures
+    selectedStudent
 }) => {
     if (!show || !selectedStudent) return null;
 
@@ -78,30 +77,6 @@ const InvoiceModal = ({
                                     <span className="due">{formatCurrency(selectedStudent.pendingAmount)}</span>
                                 </div>
                             </div>
-                        </div>
-
-                        <div className="fee-breakdown">
-                            <h4>Fee Breakdown</h4>
-                            <table className="breakdown-table">
-                                <thead>
-                                    <tr>
-                                        <th>Description</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {feeStructures.find(f => f.id === selectedStudent.feeStructure)?.components.map((comp, index) => (
-                                        <tr key={index}>
-                                            <td>{comp.name}</td>
-                                            <td>{formatCurrency(comp.amount)}</td>
-                                        </tr>
-                                    ))}
-                                    <tr className="total-row">
-                                        <td><strong>Total Amount</strong></td>
-                                        <td><strong>{formatCurrency(selectedStudent.totalFee)}</strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
 
                         <div className="payment-instructions">

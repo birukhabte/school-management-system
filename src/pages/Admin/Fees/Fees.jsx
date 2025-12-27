@@ -5,11 +5,9 @@ import Sidebar from '../Sidebar';
 import '../../../Styles/Fees.css';
 
 // Import Reusable Components
-import FeeStructureTab from './FeeStructureTab';
 import PaymentsTab from './PaymentsTab';
 import InvoicesTab from './InvoicesTab';
 import ReportsTab from './ReportsTab';
-import FeeStructureModal from './FeeStructureModal';
 import PaymentModal from './PaymentModal';
 import InvoiceModal from './InvoiceModal';
 
@@ -36,12 +34,10 @@ import {
 
 const FeesManagement = () => {
   // States
-  const [activeTab, setActiveTab] = useState('overview'); // 'overview', 'fee-structure', 'payments', 'invoices', 'reports'
-  const [showFeeStructureForm, setShowFeeStructureForm] = useState(false);
+  const [activeTab, setActiveTab] = useState('overview'); // 'overview', Controls which tab is currently visible.
   const [showPaymentForm, setShowPaymentForm] = useState(false);
   const [showInvoiceModal, setShowInvoiceModal] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
-  const [selectedFeeStructure, setSelectedFeeStructure] = useState(null);
 
   // Stats Data
   const [stats, setStats] = useState({
@@ -56,123 +52,6 @@ const FeesManagement = () => {
     monthlyTarget: 500000
   });
 
-  // Fee Structures
-  const [feeStructures, setFeeStructures] = useState([
-    {
-      id: 1,
-      name: 'Grade 9 - Regular',
-      grade: '9',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'regular',
-      amount: 12500,
-      components: [
-        { name: 'Tuition Fee', amount: 8000 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Lab Fee', amount: 1000 },
-        { name: 'Sports Fee', amount: 500 },
-        { name: 'Activity Fee', amount: 2500 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 120
-    },
-    {
-      id: 2,
-      name: 'Grade 10 - Science',
-      grade: '10',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'science',
-      amount: 14500,
-      components: [
-        { name: 'Tuition Fee', amount: 9000 },
-        { name: 'Science Lab Fee', amount: 2000 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Computer Fee', amount: 1000 },
-        { name: 'Activity Fee', amount: 2000 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 150
-    },
-    {
-      id: 3,
-      name: 'Grade 11 - Commerce',
-      grade: '11',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'commerce',
-      amount: 13500,
-      components: [
-        { name: 'Tuition Fee', amount: 8500 },
-        { name: 'Commerce Lab Fee', amount: 1500 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Computer Fee', amount: 1000 },
-        { name: 'Activity Fee', amount: 2000 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 130
-    },
-    {
-      id: 4,
-      name: 'Grade 12 - Science',
-      grade: '12',
-      academicYear: '2024-2025',
-      term: 'Quarterly',
-      feeType: 'science',
-      amount: 15500,
-      components: [
-        { name: 'Tuition Fee', amount: 9500 },
-        { name: 'Science Lab Fee', amount: 2500 },
-        { name: 'Library Fee', amount: 500 },
-        { name: 'Exam Fee', amount: 1500 },
-        { name: 'Activity Fee', amount: 1500 }
-      ],
-      dueDate: '2024-03-31',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 140
-    },
-    {
-      id: 5,
-      name: 'Transport Fee',
-      grade: 'all',
-      academicYear: '2024-2025',
-      term: 'Monthly',
-      feeType: 'transport',
-      amount: 2000,
-      components: [
-        { name: 'Bus Service', amount: 2000 }
-      ],
-      dueDate: '2024-03-25',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 400
-    },
-    {
-      id: 6,
-      name: 'Hostel Fee',
-      grade: 'all',
-      academicYear: '2024-2025',
-      term: 'Monthly',
-      feeType: 'hostel',
-      amount: 8000,
-      components: [
-        { name: 'Accommodation', amount: 5000 },
-        { name: 'Food & Dining', amount: 3000 }
-      ],
-      dueDate: '2024-03-25',
-      status: 'active',
-      createdAt: '2024-01-15',
-      totalStudents: 200
-    }
-  ]);
-
   // Students with Fee Details
   const [students, setStudents] = useState([
     {
@@ -181,7 +60,6 @@ const FeesManagement = () => {
       name: 'Biruk habte',
       grade: '10',
       section: 'A',
-      feeStructure: 2,
       totalFee: 14500,
       paidAmount: 14500,
       pendingAmount: 0,
@@ -198,7 +76,6 @@ const FeesManagement = () => {
       name: 'Emma Johnson',
       grade: '10',
       section: 'A',
-      feeStructure: 2,
       totalFee: 14500,
       paidAmount: 10000,
       pendingAmount: 4500,
@@ -215,7 +92,6 @@ const FeesManagement = () => {
       name: 'Michael Chen',
       grade: '11',
       section: 'B',
-      feeStructure: 3,
       totalFee: 13500,
       paidAmount: 13500,
       pendingAmount: 0,
@@ -232,7 +108,6 @@ const FeesManagement = () => {
       name: 'Sophia Williams',
       grade: '11',
       section: 'A',
-      feeStructure: 3,
       totalFee: 13500,
       paidAmount: 0,
       pendingAmount: 13500,
@@ -247,7 +122,6 @@ const FeesManagement = () => {
       name: 'Robert Wilson',
       grade: '12',
       section: 'A',
-      feeStructure: 4,
       totalFee: 15500,
       paidAmount: 15500,
       pendingAmount: 0,
@@ -264,7 +138,6 @@ const FeesManagement = () => {
       name: 'Lisa Brown',
       grade: '9',
       section: 'B',
-      feeStructure: 1,
       totalFee: 12500,
       paidAmount: 12500,
       pendingAmount: 0,
@@ -281,7 +154,6 @@ const FeesManagement = () => {
       name: 'David Miller',
       grade: '12',
       section: 'B',
-      feeStructure: 4,
       totalFee: 15500,
       paidAmount: 8000,
       pendingAmount: 7500,
@@ -298,7 +170,6 @@ const FeesManagement = () => {
       name: 'Sarah Davis',
       grade: '9',
       section: 'A',
-      feeStructure: 1,
       totalFee: 12500,
       paidAmount: 0,
       pendingAmount: 12500,
@@ -315,15 +186,15 @@ const FeesManagement = () => {
       id: 1,
       receiptNo: 'RCPT001',
       studentId: 'ST001',
-      studentName: 'John Smith',
+      studentName: 'Biruk habte',
       grade: '10',
       amount: 14500,
-      date: '2024-03-15',
+      date: '2025-03-15',
       mode: 'online',
       status: 'completed',
       collectedBy: 'Admin',
       feeType: 'Quarterly Fee',
-      academicYear: '2024-2025'
+      academicYear: '2025-2026'
     },
     {
       id: 2,
@@ -409,20 +280,6 @@ const FeesManagement = () => {
       feeType: 'Transport Fee',
       academicYear: '2024-2025'
     },
-    {
-      id: 8,
-      receiptNo: 'RCPT008',
-      studentId: 'ST010',
-      studentName: 'Maria Garcia',
-      grade: '10',
-      amount: 8000,
-      date: '2024-03-19',
-      mode: 'online',
-      status: 'pending',
-      collectedBy: 'System',
-      feeType: 'Hostel Fee',
-      academicYear: '2024-2025'
-    }
   ]);
 
   // Financial Reports
@@ -440,7 +297,7 @@ const FeesManagement = () => {
         { grade: '11', collected: 110000, pending: 50000 },
         { grade: '12', collected: 130000, pending: 125000 }
       ],
-      generatedAt: '2024-03-20 14:30',
+      generatedAt: '2025-03-20 14:30',
       generatedBy: 'Admin'
     },
     {
@@ -451,10 +308,8 @@ const FeesManagement = () => {
       totalPending: 250000,
       collectionRate: 83.3,
       feeTypeBreakdown: [
-        { type: 'Tuition', amount: 800000 },
         { type: 'Lab', amount: 200000 },
-        { type: 'Transport', amount: 150000 },
-        { type: 'Hostel', amount: 100000 }
+        { type: 'Transport', amount: 150000 }
       ],
       generatedAt: '2024-03-15 10:00',
       generatedBy: 'Admin'
@@ -492,9 +347,10 @@ const FeesManagement = () => {
         .reduce((sum, payment) => sum + payment.amount, 0);
 
       const totalPending = students.reduce((sum, student) => sum + student.pendingAmount, 0);
+      {/*👉 It adds up all pending fees of all students and stores the result in totalPending.*/ }
 
       const thisMonth = payments
-        .filter(p => p.status === 'completed' && p.date.startsWith('2024-03'))
+        .filter(p => p.status === 'completed' && p.date.startsWith('2025-03'))
         .reduce((sum, payment) => sum + payment.amount, 0);
 
       const lastMonth = 380000; // Hardcoded for demo
@@ -504,7 +360,7 @@ const FeesManagement = () => {
 
       const studentsPaid = students.filter(s => s.status === 'paid').length;
       const studentsPending = students.filter(s => s.status === 'pending' || s.status === 'partial' || s.status === 'overdue').length;
-      const collectionRate = ((studentsPaid / students.length) * 100).toFixed(1);
+      const collectionRate = students.length > 0 ? ((studentsPaid / students.length) * 100).toFixed(1) : "0.0";
 
       setStats({
         totalCollected,
@@ -522,14 +378,15 @@ const FeesManagement = () => {
     calculateStats();
   }, [payments, students]);
 
-  // Handle Fee Structure Form Submit
-  const onFeeStructureSuccess = (newFeeStructure) => {
-    setFeeStructures([...feeStructures, { ...newFeeStructure, id: feeStructures.length + 1 }]);
-  };
 
-  // Handle Payment Form Submit
+
+  {/*When a new payment is successfully recorded:
+It generates a unique ID for the payment.
+It generates a receipt number based on the ID.
+It adds the payment to the payments state so the UI updates automatically. */}
   const onPaymentSuccess = (newPayment) => {
-    setPayments([...payments, { ...newPayment, id: payments.length + 1, receiptNo: `RCPT${String(payments.length + 1).padStart(3, '0')}` }]);
+    const nextId = payments.length > 0 ? Math.max(...payments.map(p => p.id)) + 1 : 1;
+    setPayments([...payments,  { ...newPayment, id: nextId, receiptNo: `RCPT${String(nextId).padStart(3, '0')}` }]);
   };
 
   // Generate invoice
@@ -549,6 +406,9 @@ const FeesManagement = () => {
   };
 
   // Filter students
+  {/*It filters the students array based on the selected filters for grade and status.
+Only students who match the selected grade AND status are included.
+Result is stored in filteredStudents. */}
   const filteredStudents = students.filter(student => {
     const matchesGrade = filters.grade === 'all' || student.grade === filters.grade;
     const matchesStatus = filters.status === 'all' || student.status === filters.status;
@@ -679,13 +539,7 @@ const FeesManagement = () => {
               <BarChart3 size={18} />
               <span>Overview</span>
             </button>
-            <button
-              className={`tab ${activeTab === 'fee-structure' ? 'active' : ''}`}
-              onClick={() => setActiveTab('fee-structure')}
-            >
-              <FileText size={18} />
-              <span>Fee Structure</span>
-            </button>
+
             <button
               className={`tab ${activeTab === 'payments' ? 'active' : ''}`}
               onClick={() => setActiveTab('payments')}
@@ -709,15 +563,6 @@ const FeesManagement = () => {
             </button>
           </div>
           <div className="tab-actions">
-            {activeTab === 'fee-structure' && (
-              <button
-                className="btn btn-primary"
-                onClick={() => setShowFeeStructureForm(true)}
-              >
-                <Plus size={18} />
-                <span>Create Fee Structure</span>
-              </button>
-            )}
             <button className="btn btn-secondary">
               <Filter size={18} />
               <span>Filter</span>
@@ -791,7 +636,7 @@ const FeesManagement = () => {
                         <div
                           className="bar-fill"
                           style={{ height: `${(amount / 500) * 100}%` }}
-                          title={`₹${amount}K`}
+                          title={`ETB ${amount}K`}
                         ></div>
                         <span className="bar-label">{['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'][index]}</span>
                       </div>
@@ -922,14 +767,6 @@ const FeesManagement = () => {
           </div>
         )}
 
-        {/* Fee Structure Tab */}
-        {activeTab === 'fee-structure' && (
-          <FeeStructureTab
-            feeStructures={feeStructures}
-            setSelectedFeeStructure={setSelectedFeeStructure}
-          />
-        )}
-
         {/* Payments Tab */}
         {activeTab === 'payments' && (
           <PaymentsTab
@@ -955,12 +792,7 @@ const FeesManagement = () => {
           />
         )}
 
-        {/* Fee Structure Form Modal */}
-        <FeeStructureModal
-          show={showFeeStructureForm}
-          onClose={() => setShowFeeStructureForm(false)}
-          onSuccess={onFeeStructureSuccess}
-        />
+
 
         {/* Payment Form Modal */}
         <PaymentModal
@@ -976,7 +808,6 @@ const FeesManagement = () => {
           show={showInvoiceModal}
           onClose={() => setShowInvoiceModal(false)}
           selectedStudent={selectedStudent}
-          feeStructures={feeStructures}
         />
       </div>
     </div>
